@@ -41,40 +41,47 @@ fun MainScreen() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+    
+    // Masquer la bottom bar sur l'écran splash
+    val showBottomBar = currentDestination?.route != "splash"
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            NavigationBar {
-                bottomNavItems.forEach { item ->
-                    val selected = currentDestination?.hierarchy?.any { 
-                        it.route == item.screen.route 
-                    } == true
-                    
-                    NavigationBarItem(
-                        icon = { Icon(item.icon, contentDescription = item.title) },
-                        label = { 
-                            Text(
-                                text = item.title,
-                                fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal
-                            ) 
-                        },
-                        selected = selected,
-                        onClick = {
-                            navController.navigate(item.screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            if (showBottomBar) {
+                NavigationBar {
+                    bottomNavItems.forEach { item ->
+                        val selected = currentDestination?.hierarchy?.any { 
+                            it.route == item.screen.route 
+                        } == true
+                        
+                        NavigationBarItem(
+                            icon = { Icon(item.icon, contentDescription = item.title) },
+                            label = { 
+                                Text(
+                                    text = item.title,
+                                    fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal
+                                ) 
+                            },
+                            selected = selected,
+                            onClick = {
+                                navController.navigate(item.screen.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
     ) { innerPadding ->
         AppNavigation(
-            navController = navController,            modifier = Modifier.padding(innerPadding)        )
+            navController = navController,
+            modifier = if (showBottomBar) Modifier.padding(innerPadding) else Modifier
+        )
     }
 }

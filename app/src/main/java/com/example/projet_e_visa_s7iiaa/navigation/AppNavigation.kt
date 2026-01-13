@@ -11,6 +11,7 @@ import com.example.projet_e_visa_s7iiaa.screens.ContactScreen
 import com.example.projet_e_visa_s7iiaa.screens.HomeScreen
 import com.example.projet_e_visa_s7iiaa.screens.PaymentScreen
 import com.example.projet_e_visa_s7iiaa.screens.ProfileScreen
+import com.example.projet_e_visa_s7iiaa.screens.SplashScreen
 import com.example.projet_e_visa_s7iiaa.screens.VisaApplicationScreen
 
 @Composable
@@ -23,6 +24,10 @@ fun AppNavigation(
         startDestination = Screen.Home.route,
         modifier = modifier
     ) {
+        composable(Screen.Splash.route) {
+            SplashScreen(navController = navController)
+        }
+        
         composable(Screen.Home.route) {
             HomeScreen(navController = navController)
         }
