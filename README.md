@@ -1,6 +1,6 @@
 # eVisa Burkina Faso - Application Mobile
 
-Application Android native pour faciliter les demandes de visa électronique pour le Burkina Faso. Développée dans le cadre du projet de fin d'études S7 IIAA.
+Application Android native pour faciliter les demandes de visa électronique pour le Burkina Faso. Développée dans le cadre du projet d'application mobile Android.
 
 ## À propos du projet
 
@@ -134,7 +134,7 @@ Mais dans l'ensemble ça s'est plutôt bien passé. Compose est vraiment puissan
 
 ## Auteur
 
-**Fred OUEDRAOGO**  
+**Freddy OUEDRAOGO**  
 Étudiant S7 IIAA  
 Projet de développement d'applications mobiles
 
